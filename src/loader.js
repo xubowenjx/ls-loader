@@ -1,12 +1,12 @@
 const loaderUtils = require('loader-utils')
 module.exports = function(source) {
   const options = loaderUtils.getOptions(this)
-  let prepath = options.prepath
+  //let prepath = options.prepath
   this.cacheable()
   let newSource = source
   var reg = /(\[.+\]\(.+\.(doc[x]?)(#.+)?\))/g
   newSource = newSource.replace(reg, function(arg1) {
-    return arg1.replace(/doc[x]?/g, 'md')
+    return arg1.replace(/\s+/g, '-').replace(/doc[x]?/g, 'md')
   })
 
   return newSource
